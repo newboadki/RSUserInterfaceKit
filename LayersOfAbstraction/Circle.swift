@@ -17,7 +17,8 @@ import CoreGraphics
     
     private var shapeLayer: CAShapeLayer?
     
-    private(set) var progress: CGFloat = 0.0
+    private(set) var fractionCompleted: Double = 0.0
+    private(set) var previousFractionCompleted: Double = 0.0
         
     @IBInspectable var strokeColor: UIColor = .blue {
         didSet {
@@ -78,33 +79,31 @@ import CoreGraphics
             shapeLayer = self.createLayer(withFrame: self.bounds, strokeColor: self.strokeColor.cgColor, fillColor: UIColor.clear.cgColor)
             self.layer.addSublayer(shapeLayer!)
         }
-
     }
     
-    public func update(withDelta delta: CGFloat) {
-        if self.progress + delta <= 1.0 {
-            self.progress += delta
+    public func update(withProgress progress: Progress) {
+        let delta = abs(self.fractionCompleted - progress.fractionCompleted)
+        if (self.fractionCompleted + delta) <= 1.0 {
+            self.fractionCompleted += delta
         } else {
-            self.progress = 1.0
+            self.fractionCompleted = 1.0
         }
 
-        self.animateInTransaction(amount: self.progress)
+        self.animateInTransaction(amount: CGFloat(self.fractionCompleted), delta: delta)
     }
     
-    private func animateInTransaction(amount: CGFloat) {
-        let currentProgress = self.progress
-        self.progress = amount
+    private func animateInTransaction(amount: CGFloat, delta: Double) {
         CATransaction.begin()
-        let delta = (fabs(Double(self.progress - currentProgress)))
         CATransaction.setAnimationDuration(Swift.max(0.2, delta*1.0))
-        self.shapeLayer?.strokeEnd = self.progress
+        self.shapeLayer?.strokeEnd = CGFloat(amount)
         CATransaction.commit()
     }
     
     public func reset() {
-        self.progress = 0
+        self.fractionCompleted = 0
+        self.previousFractionCompleted = 0
         CATransaction.setDisableActions(true)
-        self.shapeLayer?.strokeEnd = self.progress
+        self.shapeLayer?.strokeEnd = CGFloat(self.fractionCompleted)
         CATransaction.setDisableActions(false)
     }
 }

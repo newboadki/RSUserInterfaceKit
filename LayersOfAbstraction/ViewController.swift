@@ -18,10 +18,11 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var circle: CircularProgressIndicatorView!
+    var progress: Progress?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        self.progress = Progress(totalUnitCount: 100)
     }
 
     
@@ -37,13 +38,20 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonTapped(_ sender: Any) {
-        let increment = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        
+        let increment = arc4random_uniform(101) // [0, 100]
+        let newValue = ((self.progress?.completedUnitCount)! + Int64(increment))
+        if newValue >= (self.progress?.totalUnitCount)! {
+            self.progress?.completedUnitCount = 100
+        } else {
+            self.progress?.completedUnitCount = newValue
+        }
 
-        self.circle.update(withDelta: increment)
-        self.label.text = String(format: "%.2f %%", (self.circle.progress * 100.0))
+        self.circle.update(withProgress: self.progress!)
+        self.label.text = String(format: "%.2f %%", ((self.progress?.fractionCompleted)! * 100.0))
         
         UIView.animate(withDuration: 0.1) {
-            switch self.circle.progress*100 {
+            switch (self.progress?.fractionCompleted)!*100 {
             case 0...10:
                 self.label.textColor = UIColor.red
             case 10...20:
@@ -64,7 +72,8 @@ class ViewController: UIViewController {
     
     @IBAction func reset(_ sender: Any) {
         self.circle.reset()
-        self.label.text = String(format: "%.2f %%", (self.circle.progress * 100.0))
+        self.progress?.completedUnitCount = 0
+        self.label.text = String(format: "%.2f %%", ((self.progress?.fractionCompleted)! * 100.0))
         self.label.textColor = UIColor.black
     }
 }
