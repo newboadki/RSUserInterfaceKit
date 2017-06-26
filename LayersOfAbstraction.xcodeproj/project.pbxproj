@@ -13,7 +13,7 @@
 		0061F3101EFEFF8F0050C309 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0061F30E1EFEFF8F0050C309 /* Main.storyboard */; };
 		0061F3121EFEFF8F0050C309 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0061F3111EFEFF8F0050C309 /* Assets.xcassets */; };
 		0061F3151EFEFF8F0050C309 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0061F3131EFEFF8F0050C309 /* LaunchScreen.storyboard */; };
-		0061F31D1EFEFFDE0050C309 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061F31C1EFEFFDE0050C309 /* Circle.swift */; };
+		0061F31D1EFEFFDE0050C309 /* CircularProgressIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061F31C1EFEFFDE0050C309 /* CircularProgressIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		0061F3111EFEFF8F0050C309 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0061F3141EFEFF8F0050C309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0061F3161EFEFF8F0050C309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0061F31C1EFEFFDE0050C309 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		0061F31C1EFEFFDE0050C309 /* CircularProgressIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			children = (
 				0061F30A1EFEFF8F0050C309 /* AppDelegate.swift */,
 				0061F30C1EFEFF8F0050C309 /* ViewController.swift */,
-				0061F31C1EFEFFDE0050C309 /* Circle.swift */,
+				0061F31C1EFEFFDE0050C309 /* CircularProgressIndicatorView.swift */,
 				004742381EFFA81500976FA8 /* DrawingCircle.swift */,
 				0061F30E1EFEFF8F0050C309 /* Main.storyboard */,
 				0061F3111EFEFF8F0050C309 /* Assets.xcassets */,
@@ -146,7 +146,7 @@
 				004742391EFFA81500976FA8 /* DrawingCircle.swift in Sources */,
 				0061F30D1EFEFF8F0050C309 /* ViewController.swift in Sources */,
 				0061F30B1EFEFF8F0050C309 /* AppDelegate.swift in Sources */,
-				0061F31D1EFEFFDE0050C309 /* Circle.swift in Sources */,
+				0061F31D1EFEFFDE0050C309 /* CircularProgressIndicatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
