@@ -16,16 +16,24 @@ import CoreGraphics
 /// View component to display the progress of an operation represented by an instance of NSProgress class.
 @IBDesignable class CircularProgressIndicatorView: UIView {
     
+    /// The path of this layer is a circle. The endStroke property will be 
+    /// animated when there are progress updates.
     fileprivate var shapeLayer: CAShapeLayer?
     
+    /// Internal progress so that we can animate from this value to the one
+    /// provided in an update.
     private(set) var fractionCompleted: Double = 0.0
     
+    
+    /// This is the color that will be observed by the user, once there's progress
+    /// and will look like the fill color of a circle.
     @IBInspectable var strokeColor: UIColor = .blue {
         didSet {
             self.shapeLayer?.strokeColor = strokeColor.cgColor
         }
     }
 
+    /// Not in use.
     @IBInspectable var fillColor: UIColor = .clear {
         didSet {
             self.shapeLayer?.fillColor = fillColor.cgColor
