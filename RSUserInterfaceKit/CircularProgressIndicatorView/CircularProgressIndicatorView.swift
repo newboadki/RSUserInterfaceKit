@@ -14,11 +14,11 @@ import CoreGraphics
 
 
 /// View component to display the progress of an operation represented by an instance of NSProgress class.
-@IBDesignable class CircularProgressIndicatorView: UIView {
+@IBDesignable public class CircularProgressIndicatorView: UIView {
     
     /// The path of this layer is a circle. The endStroke property will be 
     /// animated when there are progress updates.
-    fileprivate var shapeLayer: CAShapeLayer?
+    private var shapeLayer: CAShapeLayer?
     
     /// Internal progress so that we can animate from this value to the one
     /// provided in an update.
@@ -27,14 +27,14 @@ import CoreGraphics
     
     /// This is the color that will be observed by the user, once there's progress
     /// and will look like the fill color of a circle.
-    @IBInspectable var strokeColor: UIColor = .blue {
+    @IBInspectable public var strokeColor: UIColor = .blue {
         didSet {
             self.shapeLayer?.strokeColor = strokeColor.cgColor
         }
     }
 
     /// Not in use.
-    @IBInspectable var fillColor: UIColor = .clear {
+    @IBInspectable public var fillColor: UIColor = .clear {
         didSet {
             self.shapeLayer?.fillColor = fillColor.cgColor
         }
@@ -44,17 +44,17 @@ import CoreGraphics
     
     // MARK: - Initializers
     
-    required init?(frame: CGRect, strokeColor:UIColor, fillColor:UIColor) {
+    required public init?(frame: CGRect, strokeColor:UIColor, fillColor:UIColor) {
         super.init(frame: frame)
     }
     
     
-    required override init(frame: CGRect) {
+    required override public init(frame: CGRect) {
         super.init(frame: frame)
     }
     
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -62,7 +62,7 @@ import CoreGraphics
     
     // MARK: - LayoutSubviews
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         if self.shapeLayer == nil {
@@ -109,7 +109,7 @@ import CoreGraphics
 
 // MARK: - Private methods
 
-fileprivate extension CircularProgressIndicatorView {
+private extension CircularProgressIndicatorView {
     
     func animateInTransaction(amount: CGFloat, delta: Double) {
         CATransaction.begin()
